@@ -31,11 +31,14 @@ function createWindow() {
     win = new BrowserWindow(options);
     win.setMenu(null);
     win.loadFile(path.join(__dirname, '/index.html'));
+    if (dev) {
+        win.openDevTools();
+    }
     win.once('ready-to-show', function() {
         win.show();
         win.setFullScreen(true);
     });
-    win.on('closed', function() {
+    win.on('close', function() {
         win = null;
     });
 }
