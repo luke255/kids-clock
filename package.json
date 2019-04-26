@@ -1,0 +1,51 @@
+{
+    "name": "kids-clock",
+    "version": "0.0.1",
+    "description": "An attempt to guide my children on when it's time to get up",
+    "productName": "Kids Clock",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder",
+        "postinstall": "electron-builder install-app-deps && electron-rebuild"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:luke255/kids-clock.git"
+    },
+    "author": "luke255",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/luke255/kids-clock/issues"
+    },
+    "build": {
+        "appId": "systems.bradshaw.kids-clock",
+        "productName": "Kids Clock",
+        "linux": {
+            "category": "Utility",
+            "target": "AppImage",
+            "icon": "icon",
+            "artifactName": "${name}-${version}.AppImage"
+        },
+        "mac": {
+            "category": "public.app-category.utilities",
+            "darkModeSupport": true,
+            "target": "zip"
+        }
+    },
+    "homepage": "https://github.com/luke255/kids-clock#readme",
+    "devDependencies": {
+        "electron": "^4.0.2",
+        "electron-builder": "^20.38.2",
+        "electron-download": "^4.1.1",
+        "electron-rebuild": "^1.8.2"
+    },
+    "dependencies": {
+        "display-control": "0.0.2",
+        "jquery": "^3.3.1",
+        "moment": "^2.22.2",
+        "node-schedule": "^1.3.2"
+    }
+}
