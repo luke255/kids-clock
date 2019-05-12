@@ -36,6 +36,7 @@ $(document).on('keypress', (key) => {
             selectLight(currentLight < 3 ? currentLight : -1);
             break;
         case 'Space':
+            if (currentLight === 1) {
                 if (timeout === null) {
                     $('#redMask, #greenMask').show();
                     pulse();
@@ -47,6 +48,7 @@ $(document).on('keypress', (key) => {
                     timeout = null;
                     selectLight(currentLight);
                 }, age * 60000);
+            }
             break;
     }
 });
