@@ -18,7 +18,7 @@ $.getJSON('./settings.json', (data) => {
             selectLight(0);
         }
     }, {
-        time: '0:00',
+        time: '4:00',
         action: reschedule
     }];
     reschedule();
