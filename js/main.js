@@ -23,34 +23,30 @@ $.getJSON('./settings.json', (data) => {
     }];
     reschedule();
 });
-$(document).on('keypress', (key) => {
-    switch (key.code) {
-        case 'Enter':
+$(document).on('mousedown', (e) => {
+    switch (e.button) {
+        case 2:
             if (timeout === null) {
                 currentLight++;
             } else {
-                clearInterval(interval);
-                clearTimeout(timeout);
-                timeout = null;
+                timeIn();
             }
             selectLight(currentLight < 3 ? currentLight : -1);
             break;
-        case 'Space':
+        case 0:
             if (currentLight === 1) {
-                if (timeout === null) {
-                    $('#redMask, #greenMask').show();
-                    pulse();
-                    interval = setInterval(pulse, 1000);
-                }
-                clearTimeout(timeout);
+                $('.mask').hide();
+                timeIn();
+                interval = setInterval(pulse, 1000);
                 timeout = setTimeout(() => {
-                    clearInterval(interval);
-                    timeout = null;
+                    timeIn();
                     selectLight(currentLight);
                 }, age * 60000);
             }
             break;
     }
+}).on('contextmenu', (e) => {
+    e.preventDefault();
 });
 
 function reschedule() {
@@ -76,6 +72,7 @@ function getSchedule(day, timeSplit) {
 }
 
 function pulse() {
+    $('#redMask, #greenMask').show();
     $('#yellowMask').toggle();
 }
 
@@ -85,4 +82,10 @@ function selectLight(i) {
         $('.mask').show();
         $(`#${['red', 'yellow', 'green'][i]}Mask`).hide();
     }
+}
+
+function timeIn() {
+    clearInterval(interval);
+    clearTimeout(timeout);
+    timeout = null;
 }
